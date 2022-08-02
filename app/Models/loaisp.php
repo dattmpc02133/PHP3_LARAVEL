@@ -8,7 +8,8 @@ class loaisp extends Model
 {
     // use HasFactory;
     protected $table = 'loaisp';
-    protected $primary = 'ma_loai';
+    protected $primaryKey = 'ma_loai';
+    // protected $keyType = 'bigInteger';
     protected $fillable = [
         'ma_loai',
         'ten_hh',

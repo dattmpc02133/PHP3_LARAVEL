@@ -6,39 +6,72 @@ use App\Http\Controllers\Controller;
 use App\Models\loaisp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Strong;
 
 class categoryController extends Controller
 {
     //
     // test middleware
-    public function __construct () {
+    public function __construct()
+    {
         return view('admin.clientsAdmin.pages.home');
     }
-    function listCategory (Request $request) {
+    function listCategory(Request $request)
+    {
         // dd($request);
-        $listLoai = \App\Models\loaisp::paginate(5);
-        return view('admin.category.list',['category'=>$listLoai]);
+        $listLoai = \App\Models\loaisp::all();
+        return view('admin.category.list', ['category' => $listLoai]);
     }
-    function addCategory() {
-        $loaitin = DB::table('loaisp')->select()->get();
+    function addCategory()
+    {
         return view('admin.category.add');
     }
-    function handleAddCategory (Request $request) {
-        // print_r($_POST);
-        // if($request->has('urlHinh')) {
-        //     $file = $request->urlHinh;
-        //     $fileUrl = $file -> getClientOriginalFilename();
-        //     $file->move(public_path('images'),$fileUrl);
+    function handleAddCategory(Request $request)
+    {
+        $hinh = $request -> File_Upload ->store('img');
+        // if ($request->has('File_Upload')) {
+        //     $file = $request->File_Upload;
+        //     $ext = $request->File_Upload->extension();
+        //     // $fileUrl = $file -> getClientOriginalName();
+        //     $fileUrl = time() . '_' . 'image' . '.' . $ext;
+        //     $file->move(public_path('images/Url_Hinh'), $fileUrl);
         // }
-        dd($request->all());
+        // $request->merge(['File_Upload' => $fileUrl]);
         $sp = new loaisp();
-        $sp -> ten_hh = $_POST['ten_hh'];
-        $sp -> urlHinh = $_FILES['urlHinh'];
-        $sp ->save();
-        return redirect('listCategory');
+        $sp->ten_hh = $_POST['ten_hh'];
+        // $sp->urlHinh = $filehinhUrl;
+        $sp->urlHinh = $hinh;
+        $sp->save();
+        return redirect(route('listCategory'));
     }
-    function updateCategory($id) {
-        $data = ['id'=>$id];
-        return view('admin.category.update',$data);
+    function editCategory($ma_loai)
+    {
+        $updateLoai = loaisp::select()->where('ma_loai','=',$ma_loai)->first();
+        return view('admin.category.update', ['updateLoai' => $updateLoai]);
     }
-}
+    function updateCategory(request $request,$ma_loai)
+    {
+    //   $data =  $request -> File_Upload ->store('img');
+    //   dd($data);
+        if ($request->has('File_Upload')) {
+          $hinh = $request -> File_Upload ->store('img');
+        }
+            $updateLoai = loaisp::find($ma_loai);
+            if ($updateLoai == null) return redirect(route('listCategory'));
+            $updateLoai->ten_hh = $_POST['ten_hh'];
+            $updateLoai->urlHinh = $hinh;
+            if(isset($request->hinh)){
+                Storage::delete($updateLoai->urlHinh);
+                $hinh = $request -> File_Upload ->store('img');
+            }
+            $updateLoai->save();
+            return redirect(route('listCategory'));
+    }
+    function deleteCategory($ma_loai) {
+        $deleteCategory = loaisp::find($ma_loai);
+        if ($deleteCategory == null) return redirect(route('listCategory'));
+        $deleteCategory->delete();
+        return redirect(route('listCategory'));
+    }
+};

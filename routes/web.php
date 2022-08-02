@@ -32,9 +32,9 @@ Route::middleware('auth.admin')->prefix('admin')->group(function (){
         Route::get('/',[categoryController::class,'listCategory'])->name('listCategory');
         Route::get('add',[categoryController::class,'addCategory'])->name('category.addCategory');
         Route::post('add',[categoryController::class,'handleAddCategory']);
-        Route::get('update/{id}',[categoryController::class,'updateCategory']);
-      //   Route::post('update/{id}', [categoryController::class, 'editCategory']);
-      // Route::delete('delete/{id}', [categoryController::class, 'deleteCategory'])->name('category.delete'); 
+        Route::get('update/{ma_loai}',[categoryController::class,'editCategory']);
+        Route::post('update/{ma_loai}', [categoryController::class, 'updateCategory']);
+        Route::get('delete/{ma_loai}', [categoryController::class, 'deleteCategory']); 
 
    });
    Route::prefix('product')->group(function (){
