@@ -32,7 +32,6 @@
               <ul class="nav child_menu">
                 <li><a href="{{ url('admin/category') }}">Danh sách loại hàng</a></li>
                 <li><a href="{{ url('admin/category/add') }}">Thêm loại hàng</a></li>
-                {{-- <li><a href="{{ url('admin/category/update/{id}') }}">Cập nhật loại hàng</a></li> --}}
               </ul>
             </li>
             <li><a><i class="fa fa-edit"></i> Hàng hóa <span class="fa fa-chevron-down"></span></a>

@@ -9,8 +9,8 @@
     <tr class="headings">
       <th colspan="2" class="column-title">Mã loại </th>
       <th colspan="2" class="column-title">Tên loại</th>
-      {{-- <th class="column-title"></th>
-      <th class="column-title"></th> --}}
+      <th colspan="2" class="column-title">Hình</th>
+      <th colspan="2" class="column-title"></th>
       <th class="bulk-actions" colspan="7">
         <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
       </th>
@@ -18,17 +18,19 @@
   </thead>
 
   <tbody>
-    <tr class="even pointer">
-      <td>121000040</td>
-      <td>John Blank L</td>
-      <td>121000210 <i class="success fa fa-long-arrow-up"></i></td>
+    @foreach ($category as $list_loai)
+    <tr class="flex-row">
+      <td>{{$list_loai->ma_loai}}</td>
+      <td colspan="2">{{$list_loai->ten_hh}}</td>
+      <td colspan="2"><img src="{{$list_loai->urlHinh}}" alt="{{$list_loai->urlHinh}}" class="img-circle profile_img"></td>
       <td></td>
-      <td>
+      <td rowspan="2" style="float:right;">
         <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> add </a>
         <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
         <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
       </td>
     </tr>
+    @endforeach
   </tbody>
 </table>
 </div>

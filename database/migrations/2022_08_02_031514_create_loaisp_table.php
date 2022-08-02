@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('hang_hoa', function (Blueprint $table) {
-            $table->id();
+        Schema::create('loaisp', function (Blueprint $table) {
+            $table->bigIncrements('ma_loai');
+            $table->string('ten_hh',50);
+            $table->string('urlHinh',200)->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hang_hoa');
+        Schema::dropIfExists('loaisp');
     }
 };

@@ -29,7 +29,7 @@ Route::get('/test',function(){
 Route::middleware('auth.admin')->prefix('admin')->group(function (){
    Route::get('/',[adminController::class,'trangchuAdmin']);
    Route::prefix('category')->group(function (){
-        Route::get('/',[categoryController::class,'listCategory']);
+        Route::get('/',[categoryController::class,'listCategory'])->name('listCategory');
         Route::get('add',[categoryController::class,'addCategory'])->name('category.addCategory');
         Route::post('add',[categoryController::class,'handleAddCategory']);
         Route::get('update/{id}',[categoryController::class,'updateCategory']);
