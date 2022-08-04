@@ -36,8 +36,8 @@
             </li>
             <li><a><i class="fa fa-edit"></i> Hàng hóa <span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu">
-                <li><a href="form.html">Danh sách hàng hóa</a></li>
-                <li><a href="form_advanced.html">Thêm hang hóa</a></li>
+                <li><a href="{{ url('admin/product') }}">Danh sách hàng hóa</a></li>
+                <li><a href="{{ url('admin/product/add') }}">Thêm hang hóa</a></li>
               </ul>
             </li>
             <li><a><i class="fa fa-edit"></i> Khách hàng <span class="fa fa-chevron-down"></span></a>

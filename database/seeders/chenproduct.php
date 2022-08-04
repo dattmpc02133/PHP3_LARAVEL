@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class chenloaisp extends Seeder
+class chenproduct extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,8 +16,6 @@ class chenloaisp extends Seeder
     public function run()
     {
         //
-        DB::table("loaisp")->insert([
-            ['ten_loai' => 'Ao Polo','urlHinh'=>'dat.jpg'],       
-        ]);
+      
     }
 }

@@ -16,12 +16,12 @@
     @foreach ($category as $list_loai)
     <tr>
      <div>
-      <th>{{$list_loai->ma_loai}}</th>
-      <td>{{$list_loai->ten_hh}}</td>
+      <th>{{$list_loai->id}}</th>
+      <td>{{$list_loai->ten_loai}}</td>
       <td><img style="width: 10%;border-radius: 65%;" src="{{asset($list_loai->urlHinh)}}" alt=""></td>
       <td> 
-        <a href="{{ url('admin/category/update/'. $list_loai->ma_loai) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-        <a href="{{ url('admin/category/delete/'. $list_loai->ma_loai) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
+        <a href="{{ url('admin/category/update/'. $list_loai->id) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+        <a href="{{ url('admin/category/delete/'. $list_loai->id) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
      </div>
     </tr>
     @endforeach

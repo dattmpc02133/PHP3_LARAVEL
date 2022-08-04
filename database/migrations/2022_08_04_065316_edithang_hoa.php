@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('loaisp', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('ten_loai',50);
-            $table->string('urlHinh',200)->nullable();
-            $table->timestamps();
+        Schema::table('hang_hoa', function (Blueprint $table) {
+            //
+            $table->integer('so_luong');
         });
     }
 
@@ -28,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('loaisp');
+        Schema::table('hangHoa', function (Blueprint $table) {
+            //
+        });
     }
 };

@@ -24,7 +24,7 @@ class categoryController extends Controller
         return view('admin.category.list', ['category' => $listLoai]);
     }
     function addCategory()
-    {
+    {      
         return view('admin.category.add');
     }
     function handleAddCategory(Request $request)
@@ -39,37 +39,37 @@ class categoryController extends Controller
         // }
         // $request->merge(['File_Upload' => $fileUrl]);
         $sp = new loaisp();
-        $sp->ten_hh = $_POST['ten_hh'];
+        $sp->ten_loai = $_POST['ten_loai'];
         // $sp->urlHinh = $filehinhUrl;
         $sp->urlHinh = $hinh;
         $sp->save();
         return redirect(route('listCategory'));
     }
-    function editCategory($ma_loai)
+    function editCategory($id)
     {
-        $updateLoai = loaisp::select()->where('ma_loai','=',$ma_loai)->first();
+        $updateLoai = loaisp::select()->where('id','=',$id)->first();
         return view('admin.category.update', ['updateLoai' => $updateLoai]);
     }
-    function updateCategory(request $request,$ma_loai)
+    function updateCategory(request $request,$id)
     {
     //   $data =  $request -> File_Upload ->store('img');
     //   dd($data);
         if ($request->has('File_Upload')) {
           $hinh = $request -> File_Upload ->store('img');
         }
-            $updateLoai = loaisp::find($ma_loai);
+            $updateLoai = loaisp::find($id);
             if ($updateLoai == null) return redirect(route('listCategory'));
-            $updateLoai->ten_hh = $_POST['ten_hh'];
+            $updateLoai->ten_loai = $_POST['ten_loai'];
             $updateLoai->urlHinh = $hinh;
             if(isset($request->hinh)){
                 Storage::delete($updateLoai->urlHinh);
-                $hinh = $request -> File_Upload ->store('img');
+                $updateLoai->urlHinh =$request -> File_Upload ->store('img');
             }
             $updateLoai->save();
             return redirect(route('listCategory'));
     }
-    function deleteCategory($ma_loai) {
-        $deleteCategory = loaisp::find($ma_loai);
+    function deleteCategory($id) {
+        $deleteCategory = loaisp::find($id);
         if ($deleteCategory == null) return redirect(route('listCategory'));
         $deleteCategory->delete();
         return redirect(route('listCategory'));

@@ -1,17 +1,22 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class loaisp extends Model
+class product extends Model
 {
-    // use HasFactory;
-    protected $table = 'loaisp';
+    use HasFactory;
+    protected $table = 'hang_hoa';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'id',
         'ten_hh',
-        'urlHinh',
+        'don_gia',
+        'giam_gia',
+        'hinh_hh',
+        'trang_thai',
+        'mo_ta',
+        'id_loai',
     ];
 }

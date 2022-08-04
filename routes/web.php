@@ -32,17 +32,17 @@ Route::middleware('auth.admin')->prefix('admin')->group(function (){
         Route::get('/',[categoryController::class,'listCategory'])->name('listCategory');
         Route::get('add',[categoryController::class,'addCategory'])->name('category.addCategory');
         Route::post('add',[categoryController::class,'handleAddCategory']);
-        Route::get('update/{ma_loai}',[categoryController::class,'editCategory']);
-        Route::post('update/{ma_loai}', [categoryController::class, 'updateCategory']);
-        Route::get('delete/{ma_loai}', [categoryController::class, 'deleteCategory']); 
+        Route::get('update/{id}',[categoryController::class,'editCategory']);
+        Route::post('update/{id}', [categoryController::class, 'updateCategory']);
+        Route::get('delete/{id}', [categoryController::class, 'deleteCategory']); 
 
    });
    Route::prefix('product')->group(function (){
-      Route::get('/',[ProductsController::class, 'listProduct']);
-      Route::get('add',[ProductsController::class, 'addProduct'])->name('Product.addProduct');
+      Route::get('/',[ProductsController::class, 'listProduct'])->name('listProducts');
+      Route::get('add',[ProductsController::class, 'addProduct']);
       Route::post('add',[ProductsController::class, 'handleAddProduct']);
-      Route::get('update/{id}',[ProductsController::class, 'updateProduct']);
-    //   Route::post('update/{id}', [ProductsController::class, '::class, 'editCategory']);
+      Route::get('update/{id}',[ProductsController::class, 'editProduct']);
+      Route::post('update/{id}',[ProductsController::class, 'updateProduct']);
     // Route::delete('delete/{id}', [ProductsController::class, '::class, 'deleteCategory'])->name('category.delete'); 
 
  });
