@@ -18,13 +18,11 @@
 							<ion-icon name="logo-instagram"></ion-icon>
 						</a>
 
-						{{-- <a href="#" class="flex-c-m trans-04 p-lr-25">
-							My Account
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							
 						</a>
 
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							USD
-						</a> --}}
+						
 					</div>
 				</div>
 			</div>
