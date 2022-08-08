@@ -8,11 +8,14 @@
         <thead class="table-danger">
             <tr>
                 <th> Tên sản phẩm </th>
+                <th> Hình sản phẩm </th>
                 <th>Đơn giá</th>
                 <th>Giảm giá (%)</th>
                 <th>Số lượng</th>
                 <th>Trạng thái</th>
                 <th>Mã loại</th>
+                <th></th>
+                <th></th>
                 <th></th>
                 <th></th>
 
@@ -23,15 +26,23 @@
                 <tr>
                     <!-- <td class="check"><input type="checkbox"> </td> -->
                     <td class="ma_sp">{{$list_hangHoa->ten_hh}}</td>
+                    <td style="width:15%"><img class="w-50" src="{{asset($list_hangHoa->hinh_hh)}}" alt=""></td>
                     <td>{{$list_hangHoa->don_gia}}</td>
                     <td>{{$list_hangHoa->giam_gia}}<sup>đ</sup></td>
                     <td>{{$list_hangHoa->so_luong}}</td>
-                    <td>{{$list_hangHoa->trang_thai}}</td>
+                    <td>
+                        @if ($list_hangHoa->trang_thai == 0)
+                            Hết hàng
+                        @else 
+                            Còn hàng
+                        @endif 
+                </td>
                     <td>{{$list_hangHoa->id_loai}}</td>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td class="update__delete"><a class="btn btn-info" href=""><i class="fa fa-pencil"></i></a> <a class="btn btn-danger xoa_sp" href=""><i class="fa fa-trash-o"></i> </a></td>
+                    <td class="update__delete"><a class="btn btn-info" href="{{ url('admin/product/update/'. $list_hangHoa->id) }}"><i class="fa fa-pencil"></i></a>
+                    <a class="btn btn-danger xoa_sp" href="{{ url('admin/product/delete/'. $list_hangHoa->id) }}"><i class="fa fa-trash-o"></i> </a></td>
                 </tr>
            @endforeach  
 
@@ -42,7 +53,6 @@
     </div>
     <div class="button__group">
        
-        <a href="" class=" btn btn-info button__group-item button__group-input">Thêm mới</a>
     </div>
 </form>
 @stop

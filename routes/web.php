@@ -43,7 +43,7 @@ Route::middleware('auth.admin')->prefix('admin')->group(function (){
       Route::post('add',[ProductsController::class, 'handleAddProduct']);
       Route::get('update/{id}',[ProductsController::class, 'editProduct']);
       Route::post('update/{id}',[ProductsController::class, 'updateProduct']);
-    // Route::delete('delete/{id}', [ProductsController::class, '::class, 'deleteCategory'])->name('category.delete'); 
+      Route::get('delete/{id}', [ProductsController::class, 'deleteProduct']); 
 
  });
 });

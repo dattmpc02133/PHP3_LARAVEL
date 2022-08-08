@@ -10,10 +10,11 @@
             <input type="text" class="form-control" value="{{$updateLoai->ten_loai}}" id="exampleFormControlInput1" name="ten_loai" placeholder="Nhập tên loại..!">
         </div>
         <div class="mb-3">
-            <input type="file"  class="form-control" id="exampleFormControlInput1"  name="File_Upload" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" >
-
+            <input type="file"  class="form-control" id="exampleFormControlInput1"  name="File_Upload" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+            
             <img src="{{asset($updateLoai->urlHinh)}}" id="output"  alt="">
-            <input type="text" name="File_Upload" class="form-control"  readonly>
+           <!-- <input type="text" name="hinh" class="form-control"   readonly>
+            value="{{$updateLoai->urlHinh}}" !-->
         </div>
     </div>
       

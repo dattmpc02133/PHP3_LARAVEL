@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\loaisp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Strong;
 
@@ -29,7 +30,10 @@ class categoryController extends Controller
     }
     function handleAddCategory(Request $request)
     {
-        $hinh = $request -> File_Upload ->store('img');
+        $hinh = '';
+        if ($request->file('File_Upload') != null) {
+             $hinh = $request -> File_Upload ->store('img');
+        }
         // if ($request->has('File_Upload')) {
         //     $file = $request->File_Upload;
         //     $ext = $request->File_Upload->extension();
@@ -52,8 +56,7 @@ class categoryController extends Controller
     }
     function updateCategory(request $request,$id)
     {
-    //   $data =  $request -> File_Upload ->store('img');
-    //   dd($data);
+   
         if ($request->has('File_Upload')) {
           $hinh = $request -> File_Upload ->store('img');
         }
@@ -61,9 +64,10 @@ class categoryController extends Controller
             if ($updateLoai == null) return redirect(route('listCategory'));
             $updateLoai->ten_loai = $_POST['ten_loai'];
             $updateLoai->urlHinh = $hinh;
-            if(isset($request->hinh)){
+            if(isset($updateLoai->urlHinh)){
+                // dd($updateLoai->urlHinh);
                 Storage::delete($updateLoai->urlHinh);
-                $updateLoai->urlHinh =$request -> File_Upload ->store('img');
+                $updateLoai->urlHinh = $request -> File_Upload ->store('img');
             }
             $updateLoai->save();
             return redirect(route('listCategory'));
